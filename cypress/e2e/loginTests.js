@@ -64,6 +64,27 @@ describe('Login page tests', () => {
           })
 
     })
+
+    it('Verify logout after succesfull login', () =>{
+
+        let email = "admin@admin.com"
+        let password = "12345"
+
+        onLoginPage.login(email, password)
+
+        navigateTo.logout()
+    
+
+        cy.get('.display-2').should('contain', 'Login')
+        cy.url().then(url => {
+            cy.wrap(url).should('contain','/login')
+        })
+        cy.title().then(title => {
+            cy.wrap(title).should('contain','My Awesome App')
+          })
+
+    })
+     
      
 
 
