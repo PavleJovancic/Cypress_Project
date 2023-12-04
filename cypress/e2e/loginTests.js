@@ -47,6 +47,23 @@ describe('Login page tests', () => {
         })
 
     })
+
+    it('Verify login with correct credentials', () =>{
+
+        let email = "admin@admin.com"
+        let password = "12345"
+
+        onLoginPage.login(email, password)
+
+        cy.get('.display-2').should('contain', 'Welcome Super Administrator')
+        cy.url().then(url => {
+            cy.wrap(url).should('contain','home')
+        })
+        cy.title().then(title => {
+            cy.wrap(title).should('contain','My Awesome App')
+          })
+
+    })
      
 
 
