@@ -1,3 +1,4 @@
+import { SignupPage, onSignupPage } from "../support/page_objects/signupPage"
 import { navigateTo } from "../support/page_objects/navigationPage"
 
 describe('Signup page tests', () => {
@@ -18,4 +19,20 @@ describe('Signup page tests', () => {
           })
         
     })
+
+    it('Verify display error message when user already exists', () => {
+        let name = "Another User";
+        let email = "admin@admin.com";
+        let password = "12345";
+
+        onSignupPage.signup(name, email, password)
+
+        cy.get('[role="status"]').then( popup => {
+            cy.wrap(popup).should('contain', 'E-mail already exists')
+            cy.wrap(popup).find('button').click()
+        })
+
+
+    })
+
 })
