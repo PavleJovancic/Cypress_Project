@@ -20,6 +20,21 @@ describe('Login page tests', () => {
         
     })
 
+    
+    it('Verify display error message when user does not exists', () => {
+        let email = "userdoesnotexist@gmail.com"
+        let password = "incorrectpassword"
+
+        onLoginPage.login(email, password)
+
+        cy.get('[role="status"]').then( popup => {
+            cy.wrap(popup).should('contain', 'User does not exists')
+            cy.wrap(popup).find('button').click()
+        })
+
+    })
+    
+
 
 
 })
