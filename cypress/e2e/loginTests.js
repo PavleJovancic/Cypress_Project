@@ -33,7 +33,21 @@ describe('Login page tests', () => {
         })
 
     })
-    
+
+    it('Verify display error when using incorrect password', () =>{
+
+        let email = "admin@admin.com"
+        let password = "incorrectpassword"
+
+        onLoginPage.login(email, password)
+
+        cy.get('[role="status"]').then( popup => {
+            cy.wrap(popup).should('contain', 'Wrong password')
+            cy.wrap(popup).find('button').click()
+        })
+
+    })
+     
 
 
 
