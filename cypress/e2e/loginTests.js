@@ -1,18 +1,25 @@
+import { onLoginPage } from "../support/page_objects/loginPage"
 import { navigateTo } from "../support/page_objects/navigationPage"
 
 describe('Login page tests', () => {
 
     beforeEach('open application', () => {
         cy.openHomePage()
+        navigateTo.loginPage()
     })
 
-    it.only('Verify navigation to login page', () => {
+    it('Verify navigation to login page', () => {
 
-        navigateTo.loginPage()
         cy.get('.display-2').should('contain', 'Login')
         cy.url().then(url => {
             cy.wrap(url).should('contain','/login')
         })
+        cy.title().then(title => {
+            cy.wrap(title).should('contain','My Awesome App')
+          })
         
     })
+
+
+
 })
