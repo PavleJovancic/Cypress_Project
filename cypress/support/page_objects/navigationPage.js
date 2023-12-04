@@ -8,6 +8,10 @@ export class NavigationPage {
         cy.get('[type="button"]').contains('Logout').click()
     }
 
+    signupPage(){
+        cy.contains('Sign Up').click()
+    }
+
 
 
 }
